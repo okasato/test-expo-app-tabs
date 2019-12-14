@@ -6,14 +6,19 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
 
 import AppNavigator from './navigation/AppNavigator';
 import reducer from './reducers';
+import rootSaga from './sagas';
 
+const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   reducer,
-  // applyMiddleware(),
+  applyMiddleware(sagaMiddleware),
 );
+
+sagaMiddleware.run(rootSaga);
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);

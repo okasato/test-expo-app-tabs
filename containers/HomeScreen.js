@@ -10,25 +10,33 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { Linking } from 'expo';
 
 import { MonoText } from '../components/StyledText';
-import { testTodo } from '../actions';
+import { testTodo, testTodoReset } from '../actions';
 
-function HomeScreen({ test, testTodo }) {
+function HomeScreen({ test, testTodo, testTodoReset }) {
   return (
     <View style={styles.container}>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
         <TouchableOpacity onPress={() => {
-          testTodo("Change");
+          testTodo();
+          // testTodo("Change");
         }}>
           <Text>{test}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {
-          testTodo("Default");
+          testTodoReset();
         }}>
           <Text>Return</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+          // Linking.canOpenURL('app-settings');
+          Linking.openURL('app-settings:');
+        }}>
+          <Text>Go to Settings</Text>
         </TouchableOpacity>
         {/* <View style={styles.welcomeContainer}>
           <Image
@@ -211,7 +219,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ test }) => ({ test });
 const mapDispatchToProps = dispatch => ({
-  testTodo: test => dispatch(testTodo(test)),
+  testTodo: () => dispatch(testTodo()),
+  testTodoReset: () => dispatch(testTodoReset()),
 }); 
 
 export default connect(
