@@ -19,7 +19,8 @@ import rootSaga from './sagas';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  // whitelist: ['test']
+  whitelist: ['test']
+  // blacklist: ['test']
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);

@@ -15,8 +15,7 @@ import { Linking } from 'expo';
 import { MonoText } from '../components/StyledText';
 import { testTodo, testTodoReset } from '../actions';
 
-function HomeScreen({ test, testTodo, testTodoReset }) {
-  console.log("test", test)
+function HomeScreen({ test, testTodo, testTodoReset, testPending }) {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -218,7 +217,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({ test }) => ({ test });
+const mapStateToProps = ({ test, testPending }) => ({ test, testPending });
 const mapDispatchToProps = dispatch => ({
   testTodo: () => dispatch(testTodo()),
   testTodoReset: () => dispatch(testTodoReset()),

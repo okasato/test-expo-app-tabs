@@ -6,12 +6,12 @@ const defaultState = {
 };
 
 const testTodo = (state, action) => {
-    console.log('reducers testTodo', action)
+    // console.log('reducers testTodo', action)
     return Object.assign({}, state, { testPending: true, testSuccess: false, testError: false });
 };
 
 const testTodoSuccess = (state, action) => {
-    console.log('reducers testTodoSuccess', action)
+    // console.log('reducers testTodoSuccess', action)
     return Object.assign({}, state, { test: action.payload, testPending: false, testSuccess: true, testError: false });
 };
 
