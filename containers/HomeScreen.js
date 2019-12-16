@@ -16,6 +16,7 @@ import { MonoText } from '../components/StyledText';
 import { testTodo, testTodoReset } from '../actions';
 
 function HomeScreen({ test, testTodo, testTodoReset }) {
+  console.log("test", test)
   return (
     <View style={styles.container}>
       <ScrollView

@@ -2,23 +2,44 @@ import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, AsyncStorage } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore, persistReducer } from 'redux-persist'
+// import AsyncStorage from '@react-native-community/async-storage';
 
 import AppNavigator from './navigation/AppNavigator';
 import reducer from './reducers';
 import rootSaga from './sagas';
 
+//set up redux-persist
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  // whitelist: ['test']
+};
+
+const persistedReducer = persistReducer(persistConfig, reducer);
+
+const setUpStore = () => {
+  let store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
+  let persistor = persistStore(store);
+  return { store, persistor}  
+};
+
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(
-  reducer,
-  applyMiddleware(sagaMiddleware),
-);
+// const store = createStore(
+//   reducer,
+//   applyMiddleware(sagaMiddleware),
+// );
+
+const { store, persistor } = setUpStore();
 
 sagaMiddleware.run(rootSaga);
+
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -34,10 +55,12 @@ export default function App(props) {
     console.log('Hello world Hello world')
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
-        </View>
+        <PersistGate loading={null} persistor={persistor}>
+          <View style={styles.container}>
+            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+            <AppNavigator />
+          </View>
+        </PersistGate>
       </Provider>
     );
   }
