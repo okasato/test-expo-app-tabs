@@ -14,6 +14,7 @@ import { Linking } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 import { testTodo, testTodoReset } from '../actions';
+import { generateWalletAddress } from '../utils';
 
 function HomeScreen({ test, testTodo, testTodoReset, testPending }) {
   return (
@@ -34,7 +35,9 @@ function HomeScreen({ test, testTodo, testTodoReset, testPending }) {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {
           // Linking.canOpenURL('app-settings');
-          Linking.openURL('app-settings:');
+          // Linking.openURL('app-settings:');
+          const result = generateWalletAddress();
+          console.log('generateWalletAddress', result)
         }}>
           <Text>Go to Settings</Text>
         </TouchableOpacity>

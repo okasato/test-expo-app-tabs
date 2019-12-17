@@ -6,7 +6,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "server": "node ./server/index.js"
   },
   "jest": {
     "preset": "jest-expo"
@@ -18,11 +19,14 @@
     "@react-navigation/web": "~1.0.0-alpha.9",
     "apisauce": "^1.1.1",
     "axios": "^0.19.0",
+    "crypto": "^1.0.1",
     "expo": "~36.0.0",
     "expo-asset": "~8.0.0",
     "expo-constants": "~8.0.0",
+    "expo-crypto": "^8.0.0",
     "expo-font": "~8.0.0",
     "expo-web-browser": "~8.0.0",
+    "express": "^4.17.1",
     "glamorous-native": "^2.0.0",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
@@ -38,7 +42,10 @@
     "redux": "^4.0.4",
     "redux-persist": "^5.10.0",
     "redux-persist-transform-filter": "0.0.20",
-    "redux-saga": "^1.1.3"
+    "redux-saga": "^1.1.3",
+    "ripple-lib": "^1.5.0",
+    "util": "^0.12.1",
+    "xpring-js": "^1.2.5"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.0.0",
