@@ -10,11 +10,11 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { Linking } from 'expo';
+// import { Linking } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 import { testTodo, testTodoReset } from '../actions';
-import { generateWalletAddress } from '../utils';
+// import { generateWalletAddress } from '../utils';
 
 function HomeScreen({ test, testTodo, testTodoReset, testPending }) {
   return (
@@ -36,8 +36,8 @@ function HomeScreen({ test, testTodo, testTodoReset, testPending }) {
         <TouchableOpacity onPress={() => {
           // Linking.canOpenURL('app-settings');
           // Linking.openURL('app-settings:');
-          const result = generateWalletAddress();
-          console.log('generateWalletAddress', result)
+          // const result = generateWalletAddress();
+          // console.log('generateWalletAddress', result)
         }}>
           <Text>Go to Settings</Text>
         </TouchableOpacity>

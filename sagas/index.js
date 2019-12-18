@@ -1,5 +1,4 @@
 import { call, put, takeEvery, all, take, select } from "redux-saga/effects";
-import axios from "axios";
 import { create } from "apisauce";
 import { testTodoSuccess } from "../actions";
 

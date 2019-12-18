@@ -1,4 +1,4 @@
-import { AppLoading } from 'expo';
+// import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
@@ -44,27 +44,36 @@ sagaMiddleware.run(rootSaga);
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-  if (!isLoadingComplete && !props.skipLoadingScreen) {
-    return (
-      <AppLoading
-        startAsync={loadResourcesAsync}
-        onError={handleLoadingError}
-        onFinish={() => handleFinishLoading(setLoadingComplete)}
-      />
-    );
-  } else {
-    console.log('Hello world Hello world')
-    return (
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <View style={styles.container}>
-            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-            <AppNavigator />
-          </View>
-        </PersistGate>
-      </Provider>
-    );
-  }
+
+  console.log('Hello world Hello world')
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          <AppNavigator />
+        </View>
+      </PersistGate>
+    </Provider>
+  );
+
+  // if (!isLoadingComplete && !props.skipLoadingScreen) {
+  //   return (
+  //     <View />
+  //   );
+  // } else {
+  //   console.log('Hello world Hello world')
+  //   return (
+  //     <Provider store={store}>
+  //       <PersistGate loading={null} persistor={persistor}>
+  //         <View style={styles.container}>
+  //           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+  //           <AppNavigator />
+  //         </View>
+  //       </PersistGate>
+  //     </Provider>
+  //   );
+  // }
 }
 
 async function loadResourcesAsync() {

@@ -1,0 +1,5 @@
+dependencies: \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Folly/folly/lang/ColdClass.cpp \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Target\ Support\ Files/Folly/Folly-prefix.pch \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Folly/folly/lang/ColdClass.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Folly/folly/CppAttributes.h

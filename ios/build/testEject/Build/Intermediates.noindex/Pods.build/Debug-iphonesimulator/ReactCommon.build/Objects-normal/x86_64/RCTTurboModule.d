@@ -1,0 +1,43 @@
+dependencies: \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/node_modules/react-native/ReactCommon/turbomodule/core/platform/ios/RCTTurboModule.mm \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Target\ Support\ Files/ReactCommon/ReactCommon-prefix.pch \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/node_modules/react-native/ReactCommon/turbomodule/core/platform/ios/RCTTurboModule.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTBridge.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTBridgeDelegate.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTJavaScriptLoader.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTDefines.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTBridgeModule.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTFrameUpdate.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTInvalidating.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTModuleMethod.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTBridgeMethod.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTNullability.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/node_modules/react-native/ReactCommon/jscallinvoker/ReactCommon/JSCallInvoker.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/node_modules/react-native/ReactCommon/turbomodule/core/TurboModule.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-jsi/jsi/jsi.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-jsi/jsi/jsi-inl.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-cxxreact/cxxreact/MessageQueueThread.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTConvert.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTAnimationType.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTBorderStyle.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTLog.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTAssert.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTUtils.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTPointerEvents.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTTextDecorationLineType.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/Yoga/yoga/Yoga.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/Yoga/yoga/YGEnums.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/Yoga/yoga/YGMacros.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/Yoga/yoga/YGValue.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTCxxConvert.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Headers/Public/React-Core/React/RCTManagedPointer.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/node_modules/react-native/ReactCommon/turbomodule/core/LongLivedObject.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/node_modules/react-native/ReactCommon/turbomodule/core/TurboModuleUtils.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Folly/folly/Optional.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Folly/folly/Portability.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Folly/folly/portability/Config.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Folly/folly/CPortability.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Folly/folly/Traits.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Folly/folly/Utility.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Folly/folly/lang/Exception.h \
+  /Users/shingok/test-expo-app/test-expo-app-tabs/ios/Pods/Folly/folly/CppAttributes.h
