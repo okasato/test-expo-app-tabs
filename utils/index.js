@@ -1,16 +1,17 @@
-// const RippleAPI = require('ripple-lib').RippleAPI;
+const RippleAPI = require('ripple-lib').RippleAPI;
 // const Mnemonic = require('bitcore-mnemonic');
 // const { Wallet } = require("xpring-js");
 
 // exports.generateWalletAddress = () => {
-// export const generateWalletAddress = () => {
-  // const api = new RippleAPI();
-  // const { generateXAddress } = api;
-  // const result = generateXAddress();
+export const generateWalletAddress = () => {
+  const api = new RippleAPI();
+  const { generateXAddress } = api;
+  const result = generateXAddress();
   // Generate a random wallet.
 //   const generationResult = Wallet.generateRandomWallet();
 //   return generationResult;
-// };
+  return result;
+};
 
 // exports.getMnemonic = () => {
 // export const getMnemonic = () => {
