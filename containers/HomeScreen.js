@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
-// import { Linking } from 'expo';
+import crypto from 'crypto';
 
 import { MonoText } from '../components/StyledText';
 import { testTodo, testTodoReset } from '../actions';
@@ -34,10 +34,10 @@ function HomeScreen({ test, testTodo, testTodoReset, testPending }) {
           <Text>Return</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {
-          // Linking.canOpenURL('app-settings');
-          // Linking.openURL('app-settings:');
           // const result = generateWalletAddress();
           // console.log('generateWalletAddress', result)
+          // use crypto
+          console.log(crypto.randomBytes(32).toString('hex'))
         }}>
           <Text>Go to Settings</Text>
         </TouchableOpacity>

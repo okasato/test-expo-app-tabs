@@ -5,6 +5,65 @@
 	<key>logFormatVersion</key>
 	<integer>9</integer>
 	<key>logs</key>
-	<dict/>
+	<dict>
+		<key>D47A5402-F9EC-4340-A509-FFCC0330CF5C</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>D47A5402-F9EC-4340-A509-FFCC0330CF5C.xcactivitylog</string>
+			<key>highLevelStatus</key>
+			<string>W</string>
+			<key>schemeIdentifier-containerName</key>
+			<string>testEject project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>testEject</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building workspace testEject with scheme testEject and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>598484676.49743795</real>
+			<key>timeStoppedRecording</key>
+			<real>598484719.52883196</real>
+			<key>title</key>
+			<string>Building workspace testEject with scheme testEject and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>D47A5402-F9EC-4340-A509-FFCC0330CF5C</string>
+		</dict>
+		<key>DBBC1633-AE21-4B62-8C1F-E7AC4A9C9EC7</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>DBBC1633-AE21-4B62-8C1F-E7AC4A9C9EC7.xcactivitylog</string>
+			<key>highLevelStatus</key>
+			<string>W</string>
+			<key>schemeIdentifier-containerName</key>
+			<string>testEject project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>testEject</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building workspace testEject with scheme testEject and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>598485788.73656297</real>
+			<key>timeStoppedRecording</key>
+			<real>598485827.00680602</real>
+			<key>title</key>
+			<string>Building workspace testEject with scheme testEject and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>DBBC1633-AE21-4B62-8C1F-E7AC4A9C9EC7</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

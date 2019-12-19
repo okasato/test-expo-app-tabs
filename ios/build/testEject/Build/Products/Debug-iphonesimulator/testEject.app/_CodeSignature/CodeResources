@@ -6,7 +6,19 @@
 	<dict>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<data>
-		9i8NphGVGDj9NI6Lkjq0rksuc1A=
+		lulAeHFE+JVr42dFBJH7uHg6M60=
+		</data>
+		<key>Frameworks/NodeMobile.framework/Info.plist</key>
+		<data>
+		4uOnc5yeO3e+GGES7JNcfqR2zX4=
+		</data>
+		<key>Frameworks/NodeMobile.framework/NodeMobile</key>
+		<data>
+		eTIZrEq2N1XmCtWoCmNW+KBrGxs=
+		</data>
+		<key>Frameworks/NodeMobile.framework/_CodeSignature/CodeResources</key>
+		<data>
+		/c1bZozqPuGUgY56rglh79wUA0I=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -23,11 +35,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			9i8NphGVGDj9NI6Lkjq0rksuc1A=
+			lulAeHFE+JVr42dFBJH7uHg6M60=
 			</data>
 			<key>hash2</key>
 			<data>
-			3v37strGJekG9jUh4WuF7OSsGZaW5nJUcb9dLBlDp0k=
+			8sgoRIB1Q25V4IprdWjrMuu2iYAhSnyENcCKFzTMjUM=
+			</data>
+		</dict>
+		<key>Frameworks/NodeMobile.framework/Info.plist</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			4uOnc5yeO3e+GGES7JNcfqR2zX4=
+			</data>
+			<key>hash2</key>
+			<data>
+			UACSwl2I0Cf/c/OSwNjOZQxkQCGyWEBcbvHOxhu4//c=
+			</data>
+		</dict>
+		<key>Frameworks/NodeMobile.framework/NodeMobile</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			eTIZrEq2N1XmCtWoCmNW+KBrGxs=
+			</data>
+			<key>hash2</key>
+			<data>
+			WVJxKSiKZUHkCdm4AyeBIzukyxDko7wSImh2vguyQwU=
+			</data>
+		</dict>
+		<key>Frameworks/NodeMobile.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			/c1bZozqPuGUgY56rglh79wUA0I=
+			</data>
+			<key>hash2</key>
+			<data>
+			IutpeVh4rrJOV2vNLZ6/9415DYuxBDtKTD4Pij5K60k=
 			</data>
 		</dict>
 	</dict>

@@ -43,4 +43,6 @@ target 'testEject' do
 
   # Automatically detect installed unimodules
   use_unimodules!
+  pod 'react-native-randombytes', :path => '../node_modules/react-native-randombytes'
+
 end
