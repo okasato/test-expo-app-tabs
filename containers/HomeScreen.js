@@ -14,7 +14,7 @@ import crypto from 'crypto';
 
 import { MonoText } from '../components/StyledText';
 import { testTodo, testTodoReset } from '../actions';
-// import { generateWalletAddress } from '../utils';
+import { generateWalletAddress } from '../utils';
 
 function HomeScreen({ test, testTodo, testTodoReset, testPending }) {
   return (
@@ -34,8 +34,8 @@ function HomeScreen({ test, testTodo, testTodoReset, testPending }) {
           <Text>Return</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {
-          // const result = generateWalletAddress();
-          // console.log('generateWalletAddress', result)
+          const result = generateWalletAddress();
+          console.log('generateWalletAddress', result)
           // use crypto
           console.log(crypto.randomBytes(32).toString('hex'))
         }}>
