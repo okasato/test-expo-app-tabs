@@ -1,5 +1,5 @@
-import * as WebBrowser from 'expo-web-browser';
-import React from 'react';
+import * as WebBrowser from "expo-web-browser";
+import React from "react";
 import {
   Image,
   Platform,
@@ -7,38 +7,68 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
-} from 'react-native';
-import { connect } from 'react-redux';
-import crypto from 'crypto';
+  View
+} from "react-native";
+import { connect } from "react-redux";
+import crypto from "crypto";
 
-import { MonoText } from '../components/StyledText';
-import { testTodo, testTodoReset } from '../actions';
-import { generateWalletAddress } from '../utils';
+import { MonoText } from "../components/StyledText";
+import { testTodo, testTodoReset } from "../actions";
+import {
+  generateNewWallet,
+  getAddress,
+  getWalletFromMnemonic,
+  getRippleClassicAddressFromXAddress,
+} from "../utils";
 
 function HomeScreen({ test, testTodo, testTodoReset, testPending }) {
   return (
     <View style={styles.container}>
       <ScrollView
         style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
-        <TouchableOpacity onPress={() => {
-          testTodo();
-          // testTodo("Change");
-        }}>
+        contentContainerStyle={styles.contentContainer}
+      >
+        <TouchableOpacity
+          onPress={() => {
+            testTodo();
+          }}
+        >
           <Text>{test}</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => {
-          testTodoReset();
-        }}>
+        <TouchableOpacity
+          onPress={() => {
+            testTodoReset();
+          }}
+        >
           <Text>Return</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => {
-          const result = generateWalletAddress();
-          console.log('generateWalletAddress', result)
-          // use crypto
-          console.log(crypto.randomBytes(32).toString('hex'))
-        }}>
+        <TouchableOpacity
+          onPress={() => {
+            console.log(
+              "====================================================================="
+            );
+            const result = generateNewWallet();
+            console.log("==generateWalletAddress==", result);
+            const address = getAddress(result);
+            console.log("==address==", address);
+            const rippleClassicAddress = getRippleClassicAddressFromXAddress(address);
+            console.log("==rippleClassicAddress==", rippleClassicAddress);
+            const mnemonic = result.mnemonic;
+            console.log("==mnemonic==", mnemonic);
+            const walletFromMnemonic = getWalletFromMnemonic(mnemonic);
+            console.log("==wallet from mnemonic==", walletFromMnemonic);
+            console.log(
+              "==address from mnemonic==",
+              walletFromMnemonic.getAddress()
+            );
+            console.log(
+              "Is it the same as the one from mnemonic?",
+              address === walletFromMnemonic.getAddress()
+            );
+            // use crypto
+            // console.log(crypto.randomBytes(32).toString('hex'))
+          }}
+        >
           <Text>Go to Settings</Text>
         </TouchableOpacity>
         {/* <View style={styles.welcomeContainer}>
@@ -93,7 +123,7 @@ function HomeScreen({ test, testTodo, testTodoReset, testPending }) {
 }
 
 HomeScreen.navigationOptions = {
-  title: "Home",
+  title: "Home"
 };
 
 function DevelopmentModeNotice() {
@@ -121,112 +151,109 @@ function DevelopmentModeNotice() {
 
 function handleLearnMorePress() {
   WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/workflow/development-mode/'
+    "https://docs.expo.io/versions/latest/workflow/development-mode/"
   );
 }
 
 function handleHelpPress() {
   WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/workflow/up-and-running/#cant-see-your-changes'
+    "https://docs.expo.io/versions/latest/workflow/up-and-running/#cant-see-your-changes"
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff"
   },
   developmentModeText: {
     marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
+    color: "rgba(0,0,0,0.4)",
     fontSize: 14,
     lineHeight: 19,
-    textAlign: 'center',
+    textAlign: "center"
   },
   contentContainer: {
-    paddingTop: 30,
+    paddingTop: 30
   },
   welcomeContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 20
   },
   welcomeImage: {
     width: 100,
     height: 80,
-    resizeMode: 'contain',
+    resizeMode: "contain",
     marginTop: 3,
-    marginLeft: -10,
+    marginLeft: -10
   },
   getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+    alignItems: "center",
+    marginHorizontal: 50
   },
   homeScreenFilename: {
-    marginVertical: 7,
+    marginVertical: 7
   },
   codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
+    color: "rgba(96,100,109, 0.8)"
   },
   codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
+    backgroundColor: "rgba(0,0,0,0.05)",
     borderRadius: 3,
-    paddingHorizontal: 4,
+    paddingHorizontal: 4
   },
   getStartedText: {
     fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
+    color: "rgba(96,100,109, 1)",
     lineHeight: 24,
-    textAlign: 'center',
+    textAlign: "center"
   },
   tabBarInfoContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
     ...Platform.select({
       ios: {
-        shadowColor: 'black',
+        shadowColor: "black",
         shadowOffset: { width: 0, height: -3 },
         shadowOpacity: 0.1,
-        shadowRadius: 3,
+        shadowRadius: 3
       },
       android: {
-        elevation: 20,
-      },
+        elevation: 20
+      }
     }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
+    alignItems: "center",
+    backgroundColor: "#fbfbfb",
+    paddingVertical: 20
   },
   tabBarInfoText: {
     fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
+    color: "rgba(96,100,109, 1)",
+    textAlign: "center"
   },
   navigationFilename: {
-    marginTop: 5,
+    marginTop: 5
   },
   helpContainer: {
     marginTop: 15,
-    alignItems: 'center',
+    alignItems: "center"
   },
   helpLink: {
-    paddingVertical: 15,
+    paddingVertical: 15
   },
   helpLinkText: {
     fontSize: 14,
-    color: '#2e78b7',
-  },
+    color: "#2e78b7"
+  }
 });
 
 const mapStateToProps = ({ test, testPending }) => ({ test, testPending });
 const mapDispatchToProps = dispatch => ({
   testTodo: () => dispatch(testTodo()),
-  testTodoReset: () => dispatch(testTodoReset()),
-}); 
+  testTodoReset: () => dispatch(testTodoReset())
+});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(HomeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
