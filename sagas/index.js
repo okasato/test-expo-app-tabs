@@ -66,13 +66,13 @@ const rippleLibApi = new RippleAPI({
 function* requestGetBalance(action) {
   console.log('how are you?')
   try {
-    rippleLibApi.on('error', (errorCode, errorMessage) => {
+    yield rippleLibApi.on('error', (errorCode, errorMessage) => {
       console.log(errorCode + ': ' + errorMessage);
     });
-    rippleLibApi.on('connected', () => {
+    yield rippleLibApi.on('connected', () => {
       console.log('connected');
     });
-    rippleLibApi.on('disconnected', code => {
+    yield rippleLibApi.on('disconnected', code => {
       console.log('disconnected, code:', code);
     });
     const getAccountInfo = address => {

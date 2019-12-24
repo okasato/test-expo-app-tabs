@@ -27,7 +27,7 @@ import {
 } from "../utils";
 
 function HomeScreen({ test, testTodo, testTodoReset, testPending, balance, getBalance }) {
-  console.log('balance is', balance.xrpBalance)
+  console.log('balance is', balance ? balance.xrpBalance : '')
   return (
     <View style={styles.container}>
       <ScrollView
