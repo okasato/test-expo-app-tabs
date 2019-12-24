@@ -1,4 +1,7 @@
-const { Wallet, Utils } = require("xpring-common-js");
+// const { Wallet, Utils } = require("xpring-common-js");
+import { Wallet, Utils } from "xpring-common-js";
+import { RippleAPI } from 'ripple-lib';
+// const RippleAPI = require('ripple-lib').RippleAPI;
 
 // Generate a random wallet.
 export const generateNewWallet = () => {
@@ -48,3 +51,27 @@ export const isValidXAddress = address => {
 export const isValidClassicAddress = address => {
   return address ? Utils.isValidClassicAddress(address) : false;
 };
+
+const api = new RippleAPI({
+  server: 'wss://s.altnet.rippletest.net:51233'
+});
+
+export const getBalance = async address => {
+  try {
+    await api.on('error', (errorCode, errorMessage) => {
+      console.log(errorCode + ': ' + errorMessage);
+    });
+    await api.on('connected', () => {
+      console.log('connected');
+    });
+    await api.on('disconnected', code => {
+      console.log('disconnected, code:', code);
+    });
+    await api.connect();
+    let response = await api.getAccountInfo(address);
+    console.log('response', response);
+    await api.disconnect();
+  } catch (error) {
+    console.log(error)
+  }
+}

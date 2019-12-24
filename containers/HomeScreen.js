@@ -13,15 +13,21 @@ import { connect } from "react-redux";
 import crypto from "crypto";
 
 import { MonoText } from "../components/StyledText";
-import { testTodo, testTodoReset } from "../actions";
+import {
+  testTodo,
+  testTodoReset,
+  getBalance,
+} from "../actions";
 import {
   generateNewWallet,
   getAddress,
   getWalletFromMnemonic,
   getRippleClassicAddressFromXAddress,
+  // getBalance
 } from "../utils";
 
-function HomeScreen({ test, testTodo, testTodoReset, testPending }) {
+function HomeScreen({ test, testTodo, testTodoReset, testPending, balance, getBalance }) {
+  console.log('balance is', balance.xrpBalance)
   return (
     <View style={styles.container}>
       <ScrollView
@@ -47,24 +53,26 @@ function HomeScreen({ test, testTodo, testTodoReset, testPending }) {
             console.log(
               "====================================================================="
             );
-            const result = generateNewWallet();
-            console.log("==generateWalletAddress==", result);
-            const address = getAddress(result);
-            console.log("==address==", address);
-            const rippleClassicAddress = getRippleClassicAddressFromXAddress(address);
-            console.log("==rippleClassicAddress==", rippleClassicAddress);
-            const mnemonic = result.mnemonic;
-            console.log("==mnemonic==", mnemonic);
-            const walletFromMnemonic = getWalletFromMnemonic(mnemonic);
-            console.log("==wallet from mnemonic==", walletFromMnemonic);
-            console.log(
-              "==address from mnemonic==",
-              walletFromMnemonic.getAddress()
-            );
-            console.log(
-              "Is it the same as the one from mnemonic?",
-              address === walletFromMnemonic.getAddress()
-            );
+            // const result = generateNewWallet();
+            // console.log("==generateWalletAddress==", result);
+            // const address = getAddress(result);
+            // console.log("==address==", address);
+            // const rippleClassicAddress = getRippleClassicAddressFromXAddress(address);
+            // console.log("==rippleClassicAddress==", rippleClassicAddress);
+            // const mnemonic = result.mnemonic;
+            // console.log("==mnemonic==", mnemonic);
+            // const walletFromMnemonic = getWalletFromMnemonic(mnemonic);
+            // console.log("==wallet from mnemonic==", walletFromMnemonic);
+            // console.log(
+            //   "==address from mnemonic==",
+            //   walletFromMnemonic.getAddress()
+            // );
+            // console.log(
+            //   "Is it the same as the one from mnemonic?",
+            //   address === walletFromMnemonic.getAddress()
+            // );
+            const myAddress = "rGPvYEMkxmeVsLBBPsAekxuFdxbRSxe71k";
+            getBalance();
             // use crypto
             // console.log(crypto.randomBytes(32).toString('hex'))
           }}
@@ -250,10 +258,11 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ test, testPending }) => ({ test, testPending });
+const mapStateToProps = ({ test, testPending, balance }) => ({ test, testPending, balance });
 const mapDispatchToProps = dispatch => ({
   testTodo: () => dispatch(testTodo()),
-  testTodoReset: () => dispatch(testTodoReset())
+  testTodoReset: () => dispatch(testTodoReset()),
+  getBalance: () => dispatch(getBalance()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

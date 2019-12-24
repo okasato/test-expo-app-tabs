@@ -16,3 +16,16 @@ export const testTodoReset = () => {
         type: 'TEST_TODO_RESET',
     }
 }
+
+export const getBalance = () => {
+    return {
+        type: 'GET_BALANCE',
+    }
+}
+
+export const getBalanceSuccess = data => {
+    return {
+        type: 'GET_BALANCE_SUCCESS',
+        payload: data,
+    }
+}

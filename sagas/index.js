@@ -1,6 +1,8 @@
 import { call, put, takeEvery, all, take, select } from "redux-saga/effects";
+import { eventChannel } from 'redux-saga';
 import { create } from "apisauce";
-import { testTodoSuccess } from "../actions";
+import { testTodoSuccess, getBalanceSuccess } from "../actions";
+import { RippleAPI } from 'ripple-lib';
 
 // const api = url => fetch(url).then(response => response.json());
 // const api = url => axios.get(url)
@@ -41,6 +43,58 @@ function* fetchTestTodo(action) {
   }
 }
 
+const rippleLibApi = new RippleAPI({
+  server: 'wss://s.altnet.rippletest.net:51233'
+});
+
+// const createChannel = rippledSocket => {
+//   return eventChannel(emit => {
+//     // const handler = data => {
+//     //   console.log(data);
+//     //   emit(data);
+//     // };
+//     const unsubscribe = () => {
+//       rippledSocket.disconnect();
+//     };
+
+//     await rippledSocket.connect();
+//     let response = await emit();
+//     await unsubscribe;
+//   });
+// };
+
+function* requestGetBalance(action) {
+  console.log('how are you?')
+  try {
+    rippleLibApi.on('error', (errorCode, errorMessage) => {
+      console.log(errorCode + ': ' + errorMessage);
+    });
+    rippleLibApi.on('connected', () => {
+      console.log('connected');
+    });
+    rippleLibApi.on('disconnected', code => {
+      console.log('disconnected, code:', code);
+    });
+    const getAccountInfo = address => {
+      return rippleLibApi.getAccountInfo(address);
+    };
+    yield rippleLibApi.connect();
+    const myAddress = 'rGPvYEMkxmeVsLBBPsAekxuFdxbRSxe71k';
+    const response = yield call(getAccountInfo, myAddress);
+    console.log('RESPONSE', response);
+    if (response) {
+      yield put(getBalanceSuccess(response));
+      yield rippleLibApi.disconnect();
+    }
+  } catch (error) {
+
+  }
+}
+
+
 export default function* rootSaga() {
-  yield all([takeEvery("TEST_TODO", fetchTestTodo)]);
+  yield all([
+    takeEvery("TEST_TODO", fetchTestTodo),
+    takeEvery("GET_BALANCE", requestGetBalance),
+  ]);
 }
