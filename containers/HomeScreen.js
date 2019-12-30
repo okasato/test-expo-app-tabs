@@ -17,17 +17,26 @@ import {
   testTodo,
   testTodoReset,
   getBalance,
+  postPaymentTransaction
 } from "../actions";
 import {
   generateNewWallet,
   getAddress,
   getWalletFromMnemonic,
-  getRippleClassicAddressFromXAddress,
+  getRippleClassicAddressFromXAddress
   // getBalance
 } from "../utils";
 
-function HomeScreen({ test, testTodo, testTodoReset, testPending, balance, getBalance }) {
-  console.log('balance is', balance ? balance.xrpBalance : '')
+function HomeScreen({
+  test,
+  testTodo,
+  testTodoReset,
+  testPending,
+  balance,
+  getBalance,
+  postPaymentTransaction,
+}) {
+  console.log("balance is", balance ? balance.xrpBalance : "");
   return (
     <View style={styles.container}>
       <ScrollView
@@ -77,7 +86,18 @@ function HomeScreen({ test, testTodo, testTodoReset, testPending, balance, getBa
             // console.log(crypto.randomBytes(32).toString('hex'))
           }}
         >
-          <Text>Go to Settings</Text>
+          <Text>Get Balance</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            const address = "rGPvYEMkxmeVsLBBPsAekxuFdxbRSxe71k";
+            const destinationAddress = "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh";
+            const amountValue = "0.02";
+            const secret = "sp1yvMNUaep9hWKXGBs3KH6a5zrDN";
+            postPaymentTransaction(address, destinationAddress, amountValue, secret);
+          }}
+        >
+          <Text>Post Payment Transaction</Text>
         </TouchableOpacity>
         {/* <View style={styles.welcomeContainer}>
           <Image
@@ -258,11 +278,17 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ test, testPending, balance }) => ({ test, testPending, balance });
+const mapStateToProps = ({ test, testPending, balance }) => ({
+  test,
+  testPending,
+  balance
+});
 const mapDispatchToProps = dispatch => ({
   testTodo: () => dispatch(testTodo()),
   testTodoReset: () => dispatch(testTodoReset()),
   getBalance: () => dispatch(getBalance()),
+  postPaymentTransaction: (address, destinationAddress, amountValue, secret) =>
+    dispatch(postPaymentTransaction(address, destinationAddress, amountValue, secret))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
