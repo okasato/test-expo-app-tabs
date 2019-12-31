@@ -11,7 +11,11 @@ const defaultState = {
   postPaymentTransactionSuccess: null,
   postPaymentTransactionError: null,
   resultPaymentTransaction: null,
-  errors: null
+  errors: null,
+  getListenToTransactionPending: null,
+  getListenToTransactionSuccess: null,
+  getListenToTransactionError: null,
+  transactions: null,
 };
 
 const testTodo = (state, action) => {
@@ -92,6 +96,31 @@ const postPaymentTransactionError = (state, action) => {
   });
 };
 
+const getListenToTransaction = (state, action) => {
+  return Object.assign({}, state, {
+    getListenToTransactionPending: true,
+    getListenToTransactionSuccess: false,
+    getListenToTransactionError: false,
+  });
+};
+
+const getListenToTransactionSuccess = (state, action) => {
+  return Object.assign({}, state, {
+    getListenToTransactionPending: false,
+    getListenToTransactionSuccess: true,
+    getListenToTransactionError: false,
+    transactions: action.payload,
+  });
+};
+
+const getListenToTransactionError = (state, action) => {
+  return Object.assign({}, state, {
+    getListenToTransactionPending: false,
+    getListenToTransactionSuccess: false,
+    getListenToTransactionError: true,
+    errors: action.payload,
+  });
+};
 
 export default (state = defaultState, action) => {
   switch (action.type) {
@@ -113,7 +142,12 @@ export default (state = defaultState, action) => {
       return postPaymentTransactionSuccess(state, action);
     case "POST_PAYMENT_TRANSACTION_ERROR":
       return postPaymentTransactionError(state, action);
-
+    case "GET_LISTEN_TO_TRANSACTION":
+      return getListenToTransaction(state, action);
+    case "GET_LISTEN_TO_TRANSACTION_SUCCESS":
+      return getListenToTransactionSuccess(state, action)
+    case "GET_LISTEN_TO_TRANSACTION_ERROR":
+      return getListenToTransactionError(state, action)
     default:
       return state;
   }

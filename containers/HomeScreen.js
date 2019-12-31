@@ -17,15 +17,9 @@ import {
   testTodo,
   testTodoReset,
   getBalance,
-  postPaymentTransaction
+  postPaymentTransaction,
+  getListenToTransaction,
 } from "../actions";
-import {
-  generateNewWallet,
-  getAddress,
-  getWalletFromMnemonic,
-  getRippleClassicAddressFromXAddress
-  // getBalance
-} from "../utils";
 
 function HomeScreen({
   test,
@@ -35,6 +29,7 @@ function HomeScreen({
   balance,
   getBalance,
   postPaymentTransaction,
+  getListenToTransaction,
 }) {
   console.log("balance is", balance ? balance.xrpBalance : "");
   return (
@@ -92,12 +87,21 @@ function HomeScreen({
           onPress={() => {
             const address = "rGPvYEMkxmeVsLBBPsAekxuFdxbRSxe71k";
             const destinationAddress = "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh";
-            const amountValue = "0.02";
+            const amountValue = "0.01";
             const secret = "sp1yvMNUaep9hWKXGBs3KH6a5zrDN";
             postPaymentTransaction(address, destinationAddress, amountValue, secret);
+            // getListenToTransaction(destinationAddress);
           }}
         >
           <Text>Post Payment Transaction</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            const destinationAddress = "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh";
+            getListenToTransaction(destinationAddress);
+          }}
+        >
+          <Text>Transaction</Text>
         </TouchableOpacity>
         {/* <View style={styles.welcomeContainer}>
           <Image
@@ -288,7 +292,8 @@ const mapDispatchToProps = dispatch => ({
   testTodoReset: () => dispatch(testTodoReset()),
   getBalance: () => dispatch(getBalance()),
   postPaymentTransaction: (address, destinationAddress, amountValue, secret) =>
-    dispatch(postPaymentTransaction(address, destinationAddress, amountValue, secret))
+    dispatch(postPaymentTransaction(address, destinationAddress, amountValue, secret)),
+  getListenToTransaction: account => dispatch(getListenToTransaction(account)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

@@ -6,7 +6,9 @@ import {
   getBalanceSuccess,
   getBalanceError,
   postPaymentTransactionSuccess,
-  postPaymentTransactionError
+  postPaymentTransactionError,
+  getListenToTransactionSuccess,
+  getListenToTransactionError,
 } from "../actions";
 import { RippleAPI } from "ripple-lib";
 
@@ -88,7 +90,7 @@ function* requestGetBalance(action) {
     yield rippleLibApi.connect();
     const myAddress = "rGPvYEMkxmeVsLBBPsAekxuFdxbRSxe71k";
     const response = yield call(getAccountInfo, myAddress);
-    console.log("RESPONSE", response, response.ok);
+    console.log("RESPONSE", response);
     if (response) {
       yield put(getBalanceSuccess(response));
       yield rippleLibApi.disconnect();
@@ -96,7 +98,7 @@ function* requestGetBalance(action) {
       yield put(getBalanceError());
     }
   } catch (error) {
-    console.log(error);
+    console.log("request getBalanceError", error);
   }
 }
 
@@ -113,8 +115,8 @@ const submit = signedTransaction => {
 };
 
 function* requestPostPaymentTransaction(action) {
+  yield rippleLibApi.connect();
   try {
-    yield rippleLibApi.connect();
     const {
       address,
       destinationAddress,
@@ -150,20 +152,56 @@ function* requestPostPaymentTransaction(action) {
         console.log("submit", responseSubmit)
         try {
           yield put(postPaymentTransactionSuccess(responseSubmit));
-          yield rippleLibApi.disconnect();
-          console.log("done and disconnected.");          
+          // yield rippleLibApi.disconnect();
+          // console.log("done and disconnected.");          
         } catch (error) {
-          console.log("submit failed.", error);
-          yield put(postPaymentTransactionSuccess(error));
+          console.log("Put postpostPaymentTransaction failed.", error);
+          yield put(postPaymentTransactionError(error));
         }
       } catch (error) {
-        console.log("sign failed", error);          
+        console.log("submit failed", error);          
       }      
     } catch (error) {
-      console.log("paymentPrepare failed", error);
+      console.log("sign failed", error);
     }
   } catch (error) {
-    console.log(error);
+    console.log("paymentPrepare failed", error);
+  }
+}
+
+const requestSubscribe = account => {
+  return rippleLibApi.request('subscribe', {
+    accounts: [ account ]
+  });
+};
+
+function* requestListenToTransaction(action) {
+  try {
+    // yield rippleLibApi.connect();    
+    yield rippleLibApi.connection.on('transaction', event => {
+      console.log(JSON.stringify(event, null, 2), '------------------------------')
+    });
+    try {
+      const { account } = action;
+      const response = yield call(requestSubscribe, account);
+      try {
+        console.log("Listen to transactions", response)
+        // if (response.status) {
+          yield put(getListenToTransactionSuccess(response));        
+          console.log('Successfully subscribed');
+
+          // yield rippleLibApi.disconnect();
+          // console.log("done and disconnected.");
+        // }
+      } catch (error) {
+        console.log("Put getListenToTransactionSuccess failed.", error);
+        yield put(getListenToTransactionError(error));
+      }
+    } catch (error) {
+      console.log("subscribed failed.", error);
+    }
+  } catch (error) {
+    console.log("connect failed.", error);
   }
 }
 
@@ -172,5 +210,6 @@ export default function* rootSaga() {
     takeEvery("TEST_TODO", fetchTestTodo),
     takeEvery("GET_BALANCE", requestGetBalance),
     takeEvery("POST_PAYMENT_TRANSACTION", requestPostPaymentTransaction),
+    takeEvery("GET_LISTEN_TO_TRANSACTION", requestListenToTransaction),
   ]);
 }
