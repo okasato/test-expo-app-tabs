@@ -9,6 +9,9 @@ import {
   postPaymentTransactionError,
   getListenToTransactionSuccess,
   getListenToTransactionError,
+  connectToRippleApi,
+  connectToRippleApiSuccess,
+  connectToRippleApiError,
 } from "../actions";
 import { RippleAPI } from "ripple-lib";
 
@@ -72,9 +75,9 @@ const rippleLibApi = new RippleAPI({
 //   });
 // };
 
-function* requestGetBalance(action) {
-  console.log("how are you?");
+function* requestConnectToRippleApi() {
   try {
+    console.log("hello connect to ripple api")
     yield rippleLibApi.on("error", (errorCode, errorMessage) => {
       console.log(errorCode + ": " + errorMessage);
     });
@@ -84,9 +87,30 @@ function* requestGetBalance(action) {
     yield rippleLibApi.on("disconnected", code => {
       console.log("disconnected, code:", code);
     });
-    const getAccountInfo = address => {
-      return rippleLibApi.getAccountInfo(address);
-    };
+    console.log("put connect to ripple api")
+    yield put(connectToRippleApiSuccess());
+  } catch (error) {
+    yield put(connectToRippleApiError());
+    console.log("REQUEST_CONNECT_RIPPLE_API_ERROR", error);
+  }
+}
+
+const getAccountInfo = address => {
+  return rippleLibApi.getAccountInfo(address);
+};
+
+function* requestGetBalance(action) {
+  console.log("how are you?");
+  try {
+    // yield rippleLibApi.on("error", (errorCode, errorMessage) => {
+    //   console.log(errorCode + ": " + errorMessage);
+    // });
+    // yield rippleLibApi.on("connected", () => {
+    //   console.log("connected");
+    // });
+    // yield rippleLibApi.on("disconnected", code => {
+    //   console.log("disconnected, code:", code);
+    // });
     yield rippleLibApi.connect();
     const myAddress = "rGPvYEMkxmeVsLBBPsAekxuFdxbRSxe71k";
     const response = yield call(getAccountInfo, myAddress);
@@ -98,7 +122,7 @@ function* requestGetBalance(action) {
       yield put(getBalanceError());
     }
   } catch (error) {
-    console.log("request getBalanceError", error);
+    console.log("REQUEST_GET_BALANCE_ERROR", error);
   }
 }
 
@@ -165,7 +189,7 @@ function* requestPostPaymentTransaction(action) {
       console.log("sign failed", error);
     }
   } catch (error) {
-    console.log("paymentPrepare failed", error);
+    console.log("REQUEST_PAYMENT_PREPARE_ERROR", error);
   }
 }
 
@@ -175,17 +199,32 @@ const requestSubscribe = account => {
   });
 };
 
+const requestUnsubscribe = account => {
+  return rippleLibApi.request('unsubscribe', {
+    accounts: [ account ]
+  });
+};
+
 function* requestListenToTransaction(action) {
+  yield rippleLibApi.connect();
+  const { account } = action; 
   try {
-    // yield rippleLibApi.connect();    
     yield rippleLibApi.connection.on('transaction', event => {
       console.log(JSON.stringify(event, null, 2), '------------------------------')
+      
+      return rippleLibApi.request('unsubscribe', {
+        accounts: [ account ]
+      }).then(response => {
+        console.log("Successfully unsubscribed", response)
+        rippleLibApi.disconnect();
+      }).catch(error => {
+        console.log("unsubscription error", error)
+      })      
     });
     try {
-      const { account } = action;
       const response = yield call(requestSubscribe, account);
       try {
-        console.log("Listen to transactions", response)
+        console.log("Listen to transactions", JSON.stringify(response, null, 2))
         // if (response.status) {
           yield put(getListenToTransactionSuccess(response));        
           console.log('Successfully subscribed');
@@ -201,7 +240,7 @@ function* requestListenToTransaction(action) {
       console.log("subscribed failed.", error);
     }
   } catch (error) {
-    console.log("connect failed.", error);
+    console.log("REQUEST_LISTEN_TO_TRANSACTION", error);
   }
 }
 
@@ -211,5 +250,6 @@ export default function* rootSaga() {
     takeEvery("GET_BALANCE", requestGetBalance),
     takeEvery("POST_PAYMENT_TRANSACTION", requestPostPaymentTransaction),
     takeEvery("GET_LISTEN_TO_TRANSACTION", requestListenToTransaction),
+    takeEvery("CONNECT_TO_RIPPLE_API", requestConnectToRippleApi),
   ]);
 }

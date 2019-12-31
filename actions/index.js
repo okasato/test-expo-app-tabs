@@ -87,3 +87,20 @@ export const getListenToTransactionError = data => {
   }
 };
 
+export const connectToRippleApi = () => {
+  return {
+    type: "CONNECT_TO_RIPPLE_API",
+  }
+};
+
+export const connectToRippleApiSuccess = () => {
+  return {
+    type: "CONNECT_TO_RIPPLE_API_SUCCESS",
+  }
+};
+
+export const connectToRippleApiError = () => {
+  return {
+    type: "CONNECT_TO_RIPPLE_API_ERROR",
+  }
+};

@@ -16,6 +16,9 @@ const defaultState = {
   getListenToTransactionSuccess: null,
   getListenToTransactionError: null,
   transactions: null,
+  connectToRippleApiPending: null,
+  connectToRippleApiSuccess: null,
+  connectToRippleApiError: null,
 };
 
 const testTodo = (state, action) => {
@@ -122,6 +125,30 @@ const getListenToTransactionError = (state, action) => {
   });
 };
 
+const connectToRippleApi = (state, action) => {
+  return Object.assign({}, state, {
+    connectToRippleApiPending: true,
+    connectToRippleApiSuccess: false,
+    connectToRippleApiError: false,
+  });
+};
+
+const connectToRippleApiSuccess = (state, action) => {
+  return Object.assign({}, state, {
+    connectToRippleApiPending: false,
+    connectToRippleApiSuccess: true,
+    connectToRippleApiError: false,
+  });
+};
+
+const connectToRippleApiError = (state, action) => {
+  return Object.assign({}, state, {
+    connectToRippleApiPending: false,
+    connectToRippleApiSuccess: false,
+    connectToRippleApiError: true,
+  });
+};
+
 export default (state = defaultState, action) => {
   switch (action.type) {
     case "TEST_TODO":
@@ -145,9 +172,16 @@ export default (state = defaultState, action) => {
     case "GET_LISTEN_TO_TRANSACTION":
       return getListenToTransaction(state, action);
     case "GET_LISTEN_TO_TRANSACTION_SUCCESS":
-      return getListenToTransactionSuccess(state, action)
+      return getListenToTransactionSuccess(state, action);
     case "GET_LISTEN_TO_TRANSACTION_ERROR":
-      return getListenToTransactionError(state, action)
+      return getListenToTransactionError(state, action);
+    case "CONNECT_TO_RIPPLE_API":
+      return connectToRippleApi(state, action);
+    case "CONNECT_TO_RIPPLE_API_SUCCESS":
+      return connectToRippleApiSuccess(state, action);
+    case "CONNECT_TO_RIPPLE_API_ERROR":
+      return connectToRippleApiError(state, action);
+
     default:
       return state;
   }

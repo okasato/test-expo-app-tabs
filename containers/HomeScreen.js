@@ -19,6 +19,7 @@ import {
   getBalance,
   postPaymentTransaction,
   getListenToTransaction,
+  connectToRippleApi,
 } from "../actions";
 
 function HomeScreen({
@@ -30,6 +31,7 @@ function HomeScreen({
   getBalance,
   postPaymentTransaction,
   getListenToTransaction,
+  connectToRippleApi,
 }) {
   console.log("balance is", balance ? balance.xrpBalance : "");
   return (
@@ -41,6 +43,7 @@ function HomeScreen({
         <TouchableOpacity
           onPress={() => {
             testTodo();
+            connectToRippleApi();
           }}
         >
           <Text>{test}</Text>
@@ -97,8 +100,9 @@ function HomeScreen({
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
+            const address = "rGPvYEMkxmeVsLBBPsAekxuFdxbRSxe71k";
             const destinationAddress = "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh";
-            getListenToTransaction(destinationAddress);
+            getListenToTransaction(address);
           }}
         >
           <Text>Transaction</Text>
@@ -294,6 +298,7 @@ const mapDispatchToProps = dispatch => ({
   postPaymentTransaction: (address, destinationAddress, amountValue, secret) =>
     dispatch(postPaymentTransaction(address, destinationAddress, amountValue, secret)),
   getListenToTransaction: account => dispatch(getListenToTransaction(account)),
+  connectToRippleApi: () => dispatch(connectToRippleApi()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
